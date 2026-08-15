@@ -76,11 +76,12 @@
       align-items:center;
       justify-content:center;
       line-height:0;
+      padding:4px 0;
     }
     .brand img{
       display:block;
-      width:20px;
-      height:20px;
+      width:28px;
+      height:28px;
       object-fit:contain;
     }
     .nav-right{
@@ -732,7 +733,7 @@
     @media (max-width: 720px){
       .wrap{padding:0 18px}
       .nav{height:58px}
-      .brand img{width:19px;height:19px}
+      .brand img{width:26px;height:26px}
       .progress-copy{display:none}
       .progress{width:72px}
       .help-btn{font-size:12px}
@@ -800,7 +801,7 @@
               <span>Text Michael</span><span>Message</span>
             </a>
             <a class="help-link" role="menuitem" href="tel:+15129372696">
-              <span>Call Michael</span><span>(512) 937-2696</span>
+              <span>Call Michael</span><span>512-937-2696</span>
             </a>
           </div>
         </div>
@@ -943,7 +944,7 @@
               <form class="profile-form" id="buyerProfile" onsubmit="submitProfile(event)">
                 <div class="field">
                   <label>Target area</label>
-                  <input name="area" placeholder="South Austin, Dripping Springs..." required />
+                  <input name="area" placeholder="South Austin, Pflugerville, Round Rock..." required />
                 </div>
                 <div class="field">
                   <label>Timeline</label>
@@ -958,19 +959,27 @@
                 <div class="field">
                   <label>Bedrooms</label>
                   <select name="beds">
-                    <option>2+</option>
-                    <option>3+</option>
-                    <option>4+</option>
+                    <option value="">Choose one</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
                     <option>5+</option>
                   </select>
                 </div>
                 <div class="field">
                   <label>Bathrooms</label>
                   <select name="baths">
-                    <option>2+</option>
-                    <option>2.5+</option>
-                    <option>3+</option>
-                    <option>4+</option>
+                    <option value="">Choose one</option>
+                    <option>1</option>
+                    <option>1.5</option>
+                    <option>2</option>
+                    <option>2.5</option>
+                    <option>3</option>
+                    <option>3.5</option>
+                    <option>4</option>
+                    <option>4.5</option>
+                    <option>5+</option>
                   </select>
                 </div>
                 <div class="field full">
@@ -1142,7 +1151,7 @@
   </dialog>
 
   <script>
-    const completed = new Set(JSON.parse(localStorage.getItem('buyerRoadmapAppleCompleted') || '[]'));
+    const completed = new Set(JSON.parse(localStorage.getItem('buyerRoadmapCompletedV2') || '[]'));
     const total = 3;
 
     function sync(){
@@ -1161,7 +1170,7 @@
         if(note) note.textContent = "✓ You're ready to shop.";
       }
 
-      localStorage.setItem('buyerRoadmapAppleCompleted', JSON.stringify([...completed]));
+      localStorage.setItem('buyerRoadmapCompletedV2', JSON.stringify([...completed]));
     }
 
     function completeStep(n){
