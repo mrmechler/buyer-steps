@@ -1,0 +1,1175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buyer Steps | Know What Comes Next</title>
+  <meta name="description" content="A clear step-by-step path through the homebuying process, from pre-approval to getting the keys." />
+  <style>
+    :root{
+      --bg:#f5f5f7;
+      --surface:#ffffff;
+      --surface-2:#fbfbfd;
+      --ink:#1d1d1f;
+      --muted:#6e6e73;
+      --line:#d2d2d7;
+      --blue:#0071e3;
+      --blue-dark:#0066cc;
+      --shadow:0 20px 60px rgba(0,0,0,.08);
+      --shadow-soft:0 10px 30px rgba(0,0,0,.05);
+      --radius-xl:32px;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --max:1200px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top center, rgba(0,113,227,.08), transparent 28%),
+        linear-gradient(180deg, #fbfbfd 0%, #f5f5f7 100%);
+      color:var(--ink);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+    .eyebrow{
+      font-size:13px;
+      letter-spacing:.04em;
+      font-weight:700;
+      color:var(--muted);
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:var(--shadow-soft);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+    }
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(250,250,252,.72);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(0,0,0,.06);
+    }
+    .nav{
+      height:64px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .brand{
+      font-size:16px;
+      font-weight:760;
+      letter-spacing:-.035em;
+    }
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .help-wrap{
+      position:relative;
+      display:flex;
+      align-items:center;
+    }
+    .help-btn{
+      appearance:none;
+      border:0;
+      background:transparent;
+      color:var(--ink);
+      font-size:13px;
+      font-weight:700;
+      cursor:pointer;
+      padding:8px 2px;
+      letter-spacing:-.01em;
+    }
+    .help-btn:hover{color:var(--blue)}
+    .help-menu{
+      position:absolute;
+      top:42px;
+      right:0;
+      width:250px;
+      padding:10px;
+      border-radius:20px;
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(0,0,0,.08);
+      box-shadow:0 18px 50px rgba(0,0,0,.14);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(-6px) scale(.98);
+      transform-origin:top right;
+      transition:.18s ease;
+    }
+    .help-wrap.open .help-menu{
+      opacity:1;
+      visibility:visible;
+      transform:none;
+    }
+    .help-title{
+      padding:10px 11px 8px;
+      font-size:13px;
+      font-weight:700;
+      color:var(--muted);
+    }
+    .help-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:12px 12px;
+      border-radius:14px;
+      font-size:14px;
+      font-weight:700;
+      transition:.16s ease;
+    }
+    .help-link:hover{background:#f3f3f6}
+    .help-link span:last-child{
+      color:var(--muted);
+      font-weight:600;
+    }
+    .step-help{
+      display:inline-flex;
+      margin-top:14px;
+      color:var(--blue);
+      font-size:14px;
+      font-weight:700;
+      letter-spacing:-.01em;
+    }
+    .step-help:hover{text-decoration:underline}
+    .progress-copy{
+      font-size:13px;
+      color:var(--muted);
+    }
+    .progress{
+      width:132px;
+      height:6px;
+      border-radius:999px;
+      overflow:hidden;
+      background:#e4e4e8;
+    }
+    .progress > span{
+      display:block;
+      width:0;
+      height:100%;
+      border-radius:999px;
+      background:var(--ink);
+      transition:.35s ease;
+    }
+
+    .hero{
+      padding:92px 0 74px;
+      text-align:center;
+    }
+    .hero .pill{margin-bottom:28px}
+    h1{
+      margin:0 auto 20px;
+      max-width:980px;
+      font-size:clamp(54px, 9vw, 112px);
+      line-height:.92;
+      letter-spacing:-.065em;
+      font-weight:800;
+    }
+    .hero-sub{
+      max-width:760px;
+      margin:0 auto;
+      font-size:clamp(20px, 2.3vw, 28px);
+      line-height:1.4;
+      letter-spacing:-.02em;
+      color:#424245;
+    }
+    .hero-actions{
+      margin-top:34px;
+      display:flex;
+      gap:14px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .btn{
+      border:0;
+      border-radius:999px;
+      padding:14px 22px;
+      cursor:pointer;
+      font-weight:700;
+      letter-spacing:-.01em;
+      transition:.2s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{
+      background:var(--blue);
+      color:#fff;
+      box-shadow:0 10px 30px rgba(0,113,227,.25);
+    }
+    .btn-primary:hover{background:var(--blue-dark)}
+    .btn-secondary{
+      background:#fff;
+      color:var(--ink);
+      border:1px solid rgba(0,0,0,.08);
+      box-shadow:var(--shadow-soft);
+    }
+    .hero-panel{
+      margin-top:56px;
+      background:linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.72));
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:40px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      align-items:stretch;
+    }
+    .hero-left{
+      padding:56px;
+      text-align:left;
+      background:
+        radial-gradient(circle at 18% 15%, rgba(0,113,227,.08), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,.9), rgba(250,250,252,.84));
+    }
+    .hero-left small{
+      display:block;
+      margin-bottom:12px;
+      font-size:13px;
+      color:var(--muted);
+      font-weight:700;
+      letter-spacing:.02em;
+    }
+    .hero-left h2{
+      margin:0 0 16px;
+      font-size:clamp(34px,4vw,58px);
+      line-height:.95;
+      letter-spacing:-.05em;
+    }
+    .hero-left p{
+      margin:0;
+      font-size:19px;
+      line-height:1.6;
+      color:#4f4f53;
+      max-width:520px;
+    }
+    .hero-right{
+      padding:32px;
+      background:linear-gradient(180deg, #f8f8fa 0%, #f1f1f4 100%);
+      border-left:1px solid rgba(0,0,0,.05);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .device{
+      width:min(100%, 420px);
+      background:#fff;
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:32px;
+      box-shadow:0 30px 70px rgba(0,0,0,.12);
+      padding:24px;
+    }
+    .device-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:18px;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .device-badge{
+      width:58px;
+      height:6px;
+      border-radius:999px;
+      background:#d7d7dc;
+      margin:0 auto 18px;
+    }
+    .device-card{
+      background:#fbfbfd;
+      border:1px solid #ececf0;
+      border-radius:22px;
+      padding:22px;
+      margin-bottom:12px;
+    }
+    .device-card strong{
+      display:block;
+      font-size:14px;
+      color:var(--muted);
+      margin-bottom:6px;
+      font-weight:700;
+    }
+    .device-card h3{
+      margin:0;
+      font-size:26px;
+      line-height:1.02;
+      letter-spacing:-.04em;
+    }
+    .device-row{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:14px 0;
+      border-top:1px solid #ececf0;
+    }
+    .device-row:first-of-type{border-top:0}
+    .device-dot{
+      width:12px;height:12px;border-radius:50%;
+      background:#c9cad1;
+      flex:0 0 auto;
+    }
+    .device-row.active .device-dot{background:var(--blue)}
+    .device-row span{
+      font-size:14px;
+      letter-spacing:-.01em;
+    }
+
+    .section{
+      padding:34px 0 20px;
+    }
+    .section-head{
+      text-align:center;
+      max-width:900px;
+      margin:0 auto 42px;
+    }
+    .section-head h2{
+      margin:0 0 10px;
+      font-size:clamp(38px,5vw,72px);
+      line-height:.96;
+      letter-spacing:-.055em;
+    }
+    .section-head p{
+      margin:0 auto;
+      max-width:720px;
+      color:var(--muted);
+      font-size:20px;
+      line-height:1.5;
+      letter-spacing:-.02em;
+    }
+
+    .feature-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin:18px 0 52px;
+    }
+    .feature{
+      background:rgba(255,255,255,.76);
+      border:1px solid rgba(255,255,255,.86);
+      border-radius:28px;
+      box-shadow:var(--shadow-soft);
+      padding:28px;
+      min-height:220px;
+    }
+    .feature .number{
+      display:inline-flex;
+      width:40px;height:40px;
+      align-items:center;justify-content:center;
+      border-radius:50%;
+      background:#f0f0f4;
+      color:#55585f;
+      font-size:13px;font-weight:700;
+      margin-bottom:18px;
+    }
+    .feature h3{
+      margin:0 0 10px;
+      font-size:28px;
+      line-height:1;
+      letter-spacing:-.04em;
+    }
+    .feature p{
+      margin:0 0 16px;
+      color:var(--muted);
+      line-height:1.6;
+      font-size:16px;
+    }
+
+    .roadmap-shell{
+      margin:10px 0 86px;
+      background:linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.56));
+      border-radius:38px;
+      border:1px solid rgba(255,255,255,.9);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+    }
+    .roadmap-wrap{
+      position:relative;
+      padding:18px 34px 24px 34px;
+    }
+    .roadmap-line{
+      position:absolute;
+      left:68px;
+      top:44px;
+      bottom:40px;
+      width:2px;
+      background:#ddddE3;
+    }
+    .roadmap-fill{
+      position:absolute;
+      left:68px;
+      top:44px;
+      width:2px;
+      height:0;
+      background:linear-gradient(180deg, var(--ink), #555a66);
+      transition:.35s ease;
+    }
+    .step{
+      position:relative;
+      display:grid;
+      grid-template-columns:108px 1fr;
+      gap:26px;
+      align-items:start;
+      padding:18px 0;
+    }
+    .step-side{
+      position:sticky;
+      top:92px;
+      align-self:start;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      z-index:3;
+    }
+    .step-num{
+      width:30px;
+      font-size:13px;
+      font-weight:700;
+      color:var(--muted);
+      text-align:right;
+    }
+    .step-dot{
+      width:18px;height:18px;border-radius:50%;
+      border:2px solid #b9bcc5;
+      background:var(--bg);
+      transition:.25s ease;
+      flex:0 0 auto;
+    }
+    .step.complete .step-dot{
+      border-color:var(--ink);
+      background:var(--ink);
+      box-shadow:0 0 0 6px rgba(245,245,247,.95);
+    }
+    .step-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
+      border:1px solid rgba(0,0,0,.05);
+      border-radius:30px;
+      box-shadow:var(--shadow-soft);
+      padding:30px 30px 28px;
+    }
+    .step-card .kicker{
+      font-size:13px;
+      color:var(--muted);
+      font-weight:700;
+      letter-spacing:-.01em;
+      margin-bottom:10px;
+    }
+    .step-card h3{
+      margin:0 0 12px;
+      font-size:clamp(28px,3vw,46px);
+      line-height:.98;
+      letter-spacing:-.05em;
+    }
+    .step-card .lead{
+      margin:0 0 20px;
+      font-size:18px;
+      line-height:1.6;
+      color:#505055;
+      max-width:860px;
+    }
+    .actions{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .status{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:14px;
+      font-weight:700;
+      color:#1d4f91;
+      opacity:0;
+      transform:translateY(4px);
+      transition:.25s ease;
+    }
+    .step.complete .status{
+      opacity:1;
+      transform:none;
+    }
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+    .chip{
+      padding:10px 14px;
+      border-radius:999px;
+      background:#f0f1f5;
+      color:#53565f;
+      font-size:13px;
+      font-weight:600;
+    }
+
+    .profile-form{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:20px;
+    }
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .field.full{grid-column:1 / -1}
+    .field label{
+      font-size:13px;
+      font-weight:700;
+      color:var(--muted);
+    }
+    .field input,.field select,.field textarea{
+      width:100%;
+      border:1px solid #dcdce2;
+      border-radius:16px;
+      background:rgba(255,255,255,.92);
+      padding:14px 15px;
+      outline:none;
+      color:var(--ink);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.6);
+    }
+    .field textarea{min-height:104px;resize:vertical}
+    .field input:focus,.field select:focus,.field textarea:focus{
+      border-color:rgba(0,113,227,.45);
+      box-shadow:0 0 0 4px rgba(0,113,227,.12);
+    }
+
+    .locked .step-card{
+      background:linear-gradient(180deg, rgba(247,247,250,.84), rgba(242,242,246,.82));
+    }
+    .locked .step-card h3{color:#2f3034}
+    .locked .step-card .lead{color:#6a6c73}
+    .lock-note{
+      font-size:14px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .cta{
+      margin:0 0 88px;
+      border-radius:40px;
+      overflow:hidden;
+      background:
+        linear-gradient(135deg, #0b0b0c 0%, #151618 60%, #20232a 100%);
+      box-shadow:0 26px 80px rgba(0,0,0,.22);
+    }
+    .cta-inner{
+      padding:64px 56px;
+      text-align:center;
+      color:#fff;
+      background:
+        radial-gradient(circle at top center, rgba(0,113,227,.22), transparent 28%);
+    }
+    .cta-inner h2{
+      margin:0 0 12px;
+      font-size:clamp(42px,5vw,74px);
+      line-height:.96;
+      letter-spacing:-.055em;
+    }
+    .cta-inner p{
+      margin:0 auto 28px;
+      max-width:720px;
+      color:#d6d7dd;
+      font-size:20px;
+      line-height:1.55;
+      letter-spacing:-.02em;
+    }
+
+    footer{
+      padding:0 0 46px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .footer-card{
+      background:rgba(255,255,255,.7);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:26px;
+      padding:24px 26px;
+      box-shadow:var(--shadow-soft);
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    dialog{
+      border:0;
+      padding:0;
+      width:min(780px, calc(100% - 24px));
+      border-radius:28px;
+      box-shadow:0 40px 100px rgba(0,0,0,.28);
+      overflow:hidden;
+    }
+    dialog::backdrop{
+      background:rgba(0,0,0,.45);
+      backdrop-filter:blur(8px);
+    }
+    .modal{
+      padding:34px;
+      background:linear-gradient(180deg, #ffffff, #f7f7fa);
+    }
+    .modal-head{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:flex-start;
+    }
+    .modal h4{
+      margin:0 0 10px;
+      font-size:40px;
+      line-height:.98;
+      letter-spacing:-.05em;
+    }
+    .modal p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
+    }
+    .close{
+      width:42px;height:42px;border-radius:50%;
+      background:#fff;border:1px solid rgba(0,0,0,.08);
+      cursor:pointer;font-size:20px;
+      box-shadow:var(--shadow-soft);
+    }
+    .sign-frame{
+      margin:24px 0;
+      padding:48px 28px;
+      border-radius:24px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.95), rgba(248,248,251,.92));
+      border:1px solid #e4e4ea;
+      text-align:center;
+    }
+    .sign-frame strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:20px;
+      letter-spacing:-.02em;
+    }
+    .sign-frame span{
+      display:block;
+      max-width:540px;
+      margin:0 auto;
+      color:var(--muted);
+      line-height:1.6;
+      font-size:14px;
+    }
+    .modal-actions{
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .hero-right{border-left:0;border-top:1px solid rgba(0,0,0,.05)}
+      .feature-grid{grid-template-columns:1fr}
+      .profile-form{grid-template-columns:1fr}
+      .field.full{grid-column:auto}
+    }
+
+    @media (max-width: 720px){
+      .wrap{padding:0 18px}
+      .nav{height:58px}
+      .brand{font-size:13px}
+      .progress-copy{display:none}
+      .progress{width:72px}
+      .help-btn{font-size:12px}
+      .help-menu{
+        position:fixed;
+        top:64px;
+        right:12px;
+        width:min(280px, calc(100vw - 24px));
+      }
+      .hero{padding:68px 0 44px}
+      .hero-left{padding:34px 26px}
+      .hero-right{padding:22px}
+      .device{border-radius:26px}
+      .section-head p,.hero-sub,.cta-inner p{font-size:18px}
+      .roadmap-wrap{padding:12px 16px 18px}
+      .roadmap-line,.roadmap-fill{left:33px}
+      .step{
+        grid-template-columns:42px 1fr;
+        gap:12px;
+      }
+      .step-side{
+        top:78px;
+        gap:0;
+      }
+      .step-num{display:none}
+      .step-dot{
+        width:16px;height:16px;
+      }
+      .step-card{
+        padding:24px 20px 22px;
+        border-radius:24px;
+      }
+      .cta-inner{
+        padding:42px 24px;
+      }
+      .footer-card{
+        padding:18px;
+      }
+      .btn{width:100%}
+      .hero-actions .btn{width:auto}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">Buyer Steps</div>
+      <div class="nav-right">
+        <div class="progress-copy"><span id="doneCount">0</span> of 3 complete</div>
+        <div class="progress" aria-label="Onboarding progress"><span id="progressBar"></span></div>
+
+        <div class="help-wrap" id="helpWrap">
+          <button class="help-btn" id="helpBtn" type="button" aria-expanded="false" aria-controls="helpMenu">
+            Questions?
+          </button>
+          <div class="help-menu" id="helpMenu" role="menu">
+            <div class="help-title">I’m here if you need me.</div>
+            <a class="help-link" role="menuitem"
+               href="sms:+15129372696?&body=Hey%20Mechler%2C%20I%20have%20a%20question%20about%20Buyer%20Steps.">
+              <span>Text Michael</span><span>Message</span>
+            </a>
+            <a class="help-link" role="menuitem" href="tel:+15129372696">
+              <span>Call Michael</span><span>512-937-2696</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap hero">
+      <h1>Know what<br>comes next.</h1>
+      <p class="hero-sub">Buying a home has a lot of moving parts. Buyer Steps keeps them in the right order — from getting pre-approved to making an offer, closing, and getting the keys.</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#step1">Start with Step 1</a>
+        <a class="btn btn-secondary" href="#roadmap">See all the steps</a>
+      </div>
+
+      <div class="hero-panel">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <small>Before we start looking</small>
+            <h2>Three things<br>come first.</h2>
+            <p>We’ll confirm your buying power, put our working relationship in writing, and define what you’re looking for. Once those pieces are in place, we’re ready to shop.</p>
+          </div>
+          <div class="hero-right">
+            <div class="device">
+              <div class="device-badge"></div>
+              <div class="device-top">
+                <span>Buyer Steps</span>
+                <span>Step 1</span>
+              </div>
+              <div class="device-card">
+                <strong>Step 1</strong>
+                <h3>Get pre-approved.</h3>
+              </div>
+              <div class="device-row active"><span class="device-dot"></span><span>Get pre-approved</span></div>
+              <div class="device-row"><span class="device-dot"></span><span>Sign buyer representation</span></div>
+              <div class="device-row"><span class="device-dot"></span><span>Define your search</span></div>
+              <div class="device-row"><span class="device-dot"></span><span>Tour, offer, close</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap section" id="onboarding">
+      <div class="section-head">
+        <h2>Start here. Then keep moving.</h2>
+        <p>Complete these three steps before we begin touring homes. Each one gives us what we need to make the search focused, efficient, and ready to move when the right home appears.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="number">01</div>
+          <h3>Know your numbers.</h3>
+          <p>Get pre-approved so we can build the search around a realistic price range, payment, and cash-to-close.</p>
+          <a href="#step1" class="btn btn-secondary">See Step 1</a>
+        </div>
+        <div class="feature">
+          <div class="number">02</div>
+          <h3>Put representation in place.</h3>
+          <p>Review and sign the Buyer Representation Agreement so the relationship, services, and compensation are clear before we begin showings.</p>
+          <a href="#step2" class="btn btn-secondary">See Step 2</a>
+        </div>
+        <div class="feature">
+          <div class="number">03</div>
+          <h3>Define the search.</h3>
+          <p>Tell me where you want to live, when you want to move, what matters most, and what you want to avoid.</p>
+          <a href="#step3" class="btn btn-secondary">See Step 3</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap section" id="roadmap">
+      <div class="section-head">
+        <h2>From first step to front door.</h2>
+        <p>You don’t need to memorize the homebuying process. Buyer Steps shows you where we are, what comes next, and what needs your attention along the way.</p>
+      </div>
+
+      <div class="roadmap-shell">
+        <div class="roadmap-wrap">
+          <div class="roadmap-line"></div>
+          <div class="roadmap-fill" id="roadmapFill"></div>
+
+          <article class="step" id="step1" data-onboarding="1">
+            <div class="step-side">
+              <div class="step-num">01</div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="step-card">
+              <div class="kicker">Step 01 · Financing</div>
+              <h3>Get pre-approved.</h3>
+              <p class="lead">A strong home search starts with a real number. Your lender will review your finances and provide a pre-approval so we can focus on homes that fit your buying power and be ready to act when the right one appears.</p>
+              <div class="actions">
+                <a class="btn btn-primary" href="https://preapprov.al/apply/" target="_blank" rel="noopener">Get pre-approved</a>
+                <button class="btn btn-secondary" type="button" onclick="completeStep(1)">I'm already pre-approved</button>
+                <span class="status">✓ Complete</span>
+              </div>
+              <div class="chips">
+                <span class="chip">Price range</span>
+                <span class="chip">Monthly payment</span>
+                <span class="chip">Cash to close</span>
+              </div>
+              <a class="step-help" href="sms:+15129372696?&body=Hey%20Mechler%2C%20I%20have%20a%20question%20about%20getting%20pre-approved.">Need help with this step? Text me.</a>
+            </div>
+          </article>
+
+          <article class="step" id="step2" data-onboarding="2">
+            <div class="step-side">
+              <div class="step-num">02</div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="step-card">
+              <div class="kicker">Step 02 · Representation</div>
+              <h3>Sign buyer representation.</h3>
+              <p class="lead">Before I show you a home as your representative, Texas law requires a written agreement between you and the brokerage. We’ll review the terms together so you understand the services, responsibilities, duration, and compensation before you sign.</p>
+              <div class="actions">
+                <button class="btn btn-primary" type="button" onclick="openSign()">Review & sign agreement</button>
+                <span class="status">✓ Signed</span>
+              </div>
+              <div class="chips">
+                <span class="chip">Services</span>
+                <span class="chip">Responsibilities</span>
+                <span class="chip">Compensation</span>
+              </div>
+              <a class="step-help" href="sms:+15129372696?&body=Hey%20Mechler%2C%20I%20have%20a%20question%20about%20the%20Buyer%20Representation%20Agreement.">Have a question before signing? Text me.</a>
+            </div>
+          </article>
+
+          <article class="step" id="step3" data-onboarding="3">
+            <div class="step-side">
+              <div class="step-num">03</div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="step-card">
+              <div class="kicker">Step 03 · Your search</div>
+              <h3>Build your search.</h3>
+              <p class="lead">Now tell me what matters most. We’ll use your priorities to build a focused search that surfaces the right homes and filters out the noise.</p>
+
+              <form class="profile-form" id="buyerProfile" onsubmit="submitProfile(event)">
+                <div class="field">
+                  <label>Target area</label>
+                  <input name="area" placeholder="South Austin, Dripping Springs..." required />
+                </div>
+                <div class="field">
+                  <label>Timeline</label>
+                  <select name="timeline" required>
+                    <option value="">Choose one</option>
+                    <option>As soon as I find the right home</option>
+                    <option>0–3 months</option>
+                    <option>3–6 months</option>
+                    <option>6+ months</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Bedrooms</label>
+                  <select name="beds">
+                    <option>2+</option>
+                    <option>3+</option>
+                    <option>4+</option>
+                    <option>5+</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Bathrooms</label>
+                  <select name="baths">
+                    <option>2+</option>
+                    <option>2.5+</option>
+                    <option>3+</option>
+                    <option>4+</option>
+                  </select>
+                </div>
+                <div class="field full">
+                  <label>Must-haves</label>
+                  <textarea name="musts" placeholder="Natural light, one story, home office, yard, good schools..."></textarea>
+                </div>
+                <div class="field full">
+                  <label>Dealbreakers</label>
+                  <textarea name="dealbreakers" placeholder="Busy road, no garage, major renovation, HOA restrictions..."></textarea>
+                </div>
+                <div class="field full">
+                  <div class="actions">
+                    <button class="btn btn-primary" type="submit">Save my search preferences</button>
+                    <span class="status">✓ Preferences saved</span>
+                  </div>
+                </div>
+              </form>
+              <a class="step-help" href="sms:+15129372696?&body=Hey%20Mechler%2C%20I%20have%20a%20question%20about%20setting%20up%20my%20home%20search.">Not sure what to put? Text me.</a>
+            </div>
+          </article>
+
+          <article class="step locked" id="step4">
+            <div class="step-side">
+              <div class="step-num">04</div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="step-card">
+              <div class="kicker">Step 04 · Search</div>
+              <h3>Start the search.</h3>
+              <p class="lead">I’ll build the search around your priorities, watch new inventory, and help you separate the homes worth seeing from the ones worth skipping.</p>
+              <div class="lock-note">Complete the onboarding steps and you’re ready to shop.</div>
+            </div>
+          </article>
+
+          <article class="step locked">
+            <div class="step-side">
+              <div class="step-num">05</div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="step-card">
+              <div class="kicker">Step 05 · Showings</div>
+              <h3>Tour the right homes.</h3>
+              <p class="lead">We’ll schedule showings for the homes that make the cut, compare the tradeoffs, and keep refining the search as you learn what matters most in person.</p>
+            </div>
+          </article>
+
+          <article class="step locked">
+            <div class="step-side">
+              <div class="step-num">06</div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="step-card">
+              <div class="kicker">Step 06 · Offer</div>
+              <h3>Write the offer.</h3>
+              <p class="lead">When you find the right home, I’ll help you evaluate the property, understand the terms, and put together an offer designed around your goals and the situation in front of us.</p>
+            </div>
+          </article>
+
+          <article class="step locked">
+            <div class="step-side">
+              <div class="step-num">07</div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="step-card">
+              <div class="kicker">Step 07 · Due diligence</div>
+              <h3>Inspect & investigate.</h3>
+              <p class="lead">Once we’re under contract, the calendar starts moving. We’ll stay on top of inspections, due diligence, documents, negotiations, and the deadlines that protect your position.</p>
+            </div>
+          </article>
+
+          <article class="step locked">
+            <div class="step-side">
+              <div class="step-num">08</div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="step-card">
+              <div class="kicker">Step 08 · Closing preparation</div>
+              <h3>Loan, appraisal & title.</h3>
+              <p class="lead">While you finalize the loan, the lender, title company, and I work through appraisal, title, financing conditions, and the details needed to get the transaction ready for closing.</p>
+            </div>
+          </article>
+
+          <article class="step locked">
+            <div class="step-side">
+              <div class="step-num">09</div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="step-card">
+              <div class="kicker">Step 09 · Final walkthrough</div>
+              <h3>Final walkthrough.</h3>
+              <p class="lead">Before closing, we’ll walk through the property one more time to confirm its condition and verify that any agreed-upon work has been completed.</p>
+            </div>
+          </article>
+
+          <article class="step locked">
+            <div class="step-side">
+              <div class="step-num">10</div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="step-card">
+              <div class="kicker">Step 10 · Closing</div>
+              <h3>Close on your home.</h3>
+              <p class="lead">You’ll review the final figures, sign your closing documents, and complete the remaining steps required for the transaction to fund and close.</p>
+            </div>
+          </article>
+
+          <article class="step locked">
+            <div class="step-side">
+              <div class="step-num">11</div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="step-card">
+              <div class="kicker">Step 11 · Keys</div>
+              <h3>Welcome home.</h3>
+              <p class="lead">Once the transaction has closed and possession is delivered under the contract, the home is yours. Time to get the keys and start the next chapter.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="cta">
+        <div class="cta-inner">
+          <h2>Ready for Step 1?</h2>
+          <p>Start with a pre-approval. Once we know your buying power, we can put the rest of the plan in motion.</p>
+          <a class="btn btn-primary" href="#step1">Get started</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <div class="footer-card">
+      <div>
+        Michael Mechler, Broker Associate<br>
+        Douglas Elliman Real Estate
+      </div>
+      <div>
+        <a href="https://www.trec.texas.gov/forms/information-about-brokerage-services" target="_blank" rel="noopener">Information About Brokerage Services</a>
+      </div>
+    </div>
+  </footer>
+
+  <dialog id="signDialog">
+    <div class="modal">
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow">Buyer Representation Agreement</div>
+          <h4>Review before you sign.</h4>
+        </div>
+        <button class="close" onclick="closeSign()" aria-label="Close">×</button>
+      </div>
+      <p>Please review the agreement carefully before signing. It explains the services provided by the brokerage, the term of the agreement, your responsibilities, and how broker compensation is handled.</p>
+      <div class="sign-frame">
+        <strong>Secure electronic signature</strong>
+        <span>Your Buyer Representation Agreement will open here for review and electronic signature once the secure signing connection is configured.</span>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeSign()">Close</button>
+        <button class="btn btn-primary" onclick="demoSigned()">Preview completed step</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    const completed = new Set(JSON.parse(localStorage.getItem('buyerRoadmapAppleCompleted') || '[]'));
+    const total = 3;
+
+    function sync(){
+      [1,2,3].forEach(n=>{
+        document.querySelector(`[data-onboarding="${n}"]`)?.classList.toggle('complete', completed.has(n));
+      });
+
+      document.getElementById('doneCount').textContent = completed.size;
+      document.getElementById('progressBar').style.width = `${(completed.size/total)*100}%`;
+      document.getElementById('roadmapFill').style.height = `${Math.min(100, completed.size/total*23)}%`;
+
+      if(completed.size === 3){
+        const step4 = document.getElementById('step4');
+        step4.classList.remove('locked');
+        const note = step4.querySelector('.lock-note');
+        if(note) note.textContent = "✓ You're ready to shop.";
+      }
+
+      localStorage.setItem('buyerRoadmapAppleCompleted', JSON.stringify([...completed]));
+    }
+
+    function completeStep(n){
+      completed.add(n);
+      sync();
+    }
+
+    function submitProfile(e){
+      e.preventDefault();
+      completeStep(3);
+    }
+
+    function openSign(){
+      document.getElementById('signDialog').showModal();
+    }
+
+    function closeSign(){
+      document.getElementById('signDialog').close();
+    }
+
+    function demoSigned(){
+      completeStep(2);
+      closeSign();
+    }
+
+    const helpWrap = document.getElementById('helpWrap');
+    const helpBtn = document.getElementById('helpBtn');
+
+    helpBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = helpWrap.classList.toggle('open');
+      helpBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', (e) => {
+      if(!helpWrap.contains(e.target)){
+        helpWrap.classList.remove('open');
+        helpBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape'){
+        helpWrap.classList.remove('open');
+        helpBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    sync();
+  </script>
+</body>
+</html>
