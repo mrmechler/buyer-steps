@@ -72,9 +72,16 @@
       gap:20px;
     }
     .brand{
-      font-size:16px;
-      font-weight:760;
-      letter-spacing:-.035em;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      line-height:0;
+    }
+    .brand img{
+      display:block;
+      width:20px;
+      height:20px;
+      object-fit:contain;
     }
     .nav-right{
       display:flex;
@@ -617,8 +624,32 @@
       box-shadow:var(--shadow-soft);
       display:flex;
       justify-content:space-between;
-      gap:20px;
+      align-items:flex-end;
+      gap:28px;
       flex-wrap:wrap;
+    }
+    .footer-left{
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+    }
+    .footer-company{
+      line-height:1.65;
+    }
+    .footer-copy{
+      color:var(--muted);
+    }
+    .footer-links{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:9px;
+      text-align:right;
+    }
+    .footer-links a:hover{
+      color:var(--ink);
+      text-decoration:underline;
+      text-underline-offset:3px;
     }
 
     dialog{
@@ -701,7 +732,7 @@
     @media (max-width: 720px){
       .wrap{padding:0 18px}
       .nav{height:58px}
-      .brand{font-size:13px}
+      .brand img{width:19px;height:19px}
       .progress-copy{display:none}
       .progress{width:72px}
       .help-btn{font-size:12px}
@@ -739,6 +770,11 @@
       }
       .footer-card{
         padding:18px;
+        align-items:flex-start;
+      }
+      .footer-links{
+        align-items:flex-start;
+        text-align:left;
       }
       .btn{width:100%}
       .hero-actions .btn{width:auto}
@@ -748,7 +784,7 @@
 <body>
   <header>
     <div class="wrap nav">
-      <div class="brand">Buyer Steps</div>
+      <a class="brand" href="/" aria-label="Buyer Steps home"><img src="assets/buyer-steps.png" alt="" /></a>
       <div class="nav-right">
         <div class="progress-copy"><span id="doneCount">0</span> of 3 complete</div>
         <div class="progress" aria-label="Onboarding progress"><span id="progressBar"></span></div>
@@ -775,7 +811,7 @@
   <main>
     <section class="wrap hero">
       <h1>Know what<br>comes next.</h1>
-      <p class="hero-sub">Buying a home has a lot of moving parts. Buyer Steps keeps them in the right order — from getting pre-approved to making an offer, closing, and getting the keys.</p>
+      <p class="hero-sub">Buying a home has a lot of moving parts. We’ll keep every step clear and in the right order — from getting pre-approved to making an offer, closing, and getting the keys.</p>
 
       <div class="hero-actions">
         <a class="btn btn-primary" href="#step1">Start with Step 1</a>
@@ -1069,12 +1105,17 @@
 
   <footer class="wrap">
     <div class="footer-card">
-      <div>
-        Michael Mechler, Broker Associate<br>
-        Douglas Elliman Real Estate
+      <div class="footer-left">
+        <div class="footer-company">
+          Michael Mechler, Broker Associate<br>
+          Douglas Elliman Real Estate
+        </div>
+        <div class="footer-copy">© 2026 Mechler Ventures</div>
       </div>
-      <div>
-        <a href="https://www.trec.texas.gov/forms/information-about-brokerage-services" target="_blank" rel="noopener">Information About Brokerage Services</a>
+
+      <div class="footer-links">
+        <a href="/information-about-brokerage-services.pdf" target="_blank" rel="noopener">Information About Brokerage Services</a>
+        <a href="/consumer-protection-notice.pdf" target="_blank" rel="noopener">Consumer Protection Notice</a>
       </div>
     </div>
   </footer>
